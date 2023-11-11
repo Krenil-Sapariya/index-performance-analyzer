@@ -1,0 +1,31 @@
+.table-card{
+    margin: 1em;
+    height: fit-content;
+    display: flex;
+    padding: 1em;
+}
+
+.table-card :last-child{
+    align-self: calc(flex-start);
+}
+
+.outer-div{
+    display: flex;
+}
+
+.delete-table-button{
+    height: fit-content;
+    margin-top: 1em !important;
+}
+
+.table-data{
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.column-data{
+    display: flex;
+    gap: 1em 1em;
+}
