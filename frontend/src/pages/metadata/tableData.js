@@ -36,6 +36,18 @@ const TableData = ({ metadata, setMetadata }) => {
     setMetadata(updated);
   }
 
+  const handleColumnDelete = (colIdx, tableIdx) => {
+    const updated = {...metadata}
+    updated.table[tableIdx].columns.splice(colIdx, 1)
+    setMetadata(updated);
+  }
+
+  const handleTableDelete = (tableIdx) => {
+    const updated = {...metadata};
+    updated.table.splice(tableIdx, 1);
+    setMetadata(updated);
+  }
+
   return (
     <>
       <Card sx={{ margin: '1em' }}>
@@ -47,7 +59,7 @@ const TableData = ({ metadata, setMetadata }) => {
             <div key={tableIdx} className="outer-div">
               <Card className="table-card">
                 <Box className="table-data">
-                  <Typography>Table Data</Typography>
+                  <Typography variant="h6">Table Data</Typography>
                   <TextField id="table-name" label="Table Name" variant="outlined" onChange={(e) => handleTableName(e.target.value)} />
                   <TextField id="total-rows" label="Total no. of rows (Nr)" type='number' />
                 </Box>
@@ -69,7 +81,7 @@ const TableData = ({ metadata, setMetadata }) => {
                           )}
                         </Box>
                         <Tooltip title="Delete column">
-                          <IconButton> <DeleteIcon /> </IconButton>
+                          <IconButton onClick={() => handleColumnDelete(colIdx, tableIdx)}> <DeleteIcon /> </IconButton>
                         </Tooltip>
                       </Box>
                     )
@@ -79,7 +91,7 @@ const TableData = ({ metadata, setMetadata }) => {
                 </Box >
               </Card>
               <Tooltip title="Delete table">
-                <IconButton className="delete-table-button"><DeleteIcon sx={{ color: "red" }} /></IconButton>
+                <IconButton className="delete-table-button" onClick={() => handleTableDelete(tableIdx)}><DeleteIcon sx={{ color: "red" }} /></IconButton>
               </Tooltip>
             </div>
           )

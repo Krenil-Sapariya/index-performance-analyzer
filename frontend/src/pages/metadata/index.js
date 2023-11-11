@@ -7,13 +7,14 @@ const Metadata = () => {
 
     const [metadata, setMetadata] = useState({
         table: [{ name: '', columns: [{ name: '', distinct: '', index: false, height: '', max: '', min: '' }] }],
+        queries: []
     });
 
     return (
         <Box sx={{ width: 'inherit', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <FormControl sx={{ width: 'inherit' }}>
                 <TableData metadata={metadata} setMetadata={setMetadata} />
-                <Queries />
+                <Queries metadata={metadata} setMetadata={setMetadata} />
             </FormControl>
         </Box>
     )
