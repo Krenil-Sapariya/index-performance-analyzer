@@ -4,26 +4,25 @@ import "./queries.css"
 
 const Queries = ({ metadata, setMetadata }) => {
 
-  const handleQueryChange = (e) => {
-    const updated = { ...metadata };
-    updated.queries = e.target.value.split(',')
+  const handleQueryChange = (queryString) => {
+    const updated = {...metadata};
+    updated.queries = queryString.split(',').map((query) => query.trim());
     setMetadata(updated);
-    console.log(metadata.queries);
   }
+
+  console.log(metadata.queries);
 
   return (
     <Box className="query-box">
       <Card className="query-card">
         <Typography className="query-header" variant="h6">List of Queries</Typography>
         <TextField
+          onChange={(e) =>  handleQueryChange(e.target.value)}
           className="query-textarea"
           label="Enter Queries Here"
           placeholder="Comma Seperated Queries"
           multiline
         />
-        <Tooltip title="Save Queries">
-          <IconButton className="query-save-btn" color="primary"><SaveIcon /></IconButton>
-        </Tooltip>
       </Card>
     </Box>
   )

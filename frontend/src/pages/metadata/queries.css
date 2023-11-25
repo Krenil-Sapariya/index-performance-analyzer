@@ -17,11 +17,3 @@
 .query-header{
     margin-bottom: 1em !important;
 }
-
-.query-save-btn{
-    margin-top: 1em !important;
-}
-
-.query-save-btn:hover{
-    background-color: rgb(231, 231, 231) !important;
-}

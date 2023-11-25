@@ -15,7 +15,6 @@ const TableData = ({ metadata, setMetadata }) => {
   };
 
   const handleAddColumn = (tableIndex) => {
-    console.log('click', tableIndex)
     setMetadata((prev) => {
       const updated = { ...prev };
       console.log(updated);
@@ -36,6 +35,12 @@ const TableData = ({ metadata, setMetadata }) => {
     setMetadata(updated);
   }
 
+  const handleNr = (tableIndex, value) => {
+    const updated = {...metadata};
+    updated.table[tableIndex].nr = value;
+    setMetadata(updated);
+  }
+
   const handleColumnDelete = (colIdx, tableIdx) => {
     const updated = {...metadata}
     updated.table[tableIdx].columns.splice(colIdx, 1)
@@ -48,10 +53,16 @@ const TableData = ({ metadata, setMetadata }) => {
     setMetadata(updated);
   }
 
+  const handleBlockingFactor = (value) => {
+    const updated = {...metadata};
+    updated.blockingFactor = value || 0;
+    setMetadata(updated);
+  }
+
   return (
     <>
       <Card sx={{ margin: '1em' }}>
-        <TextField type="number" label="Blocking Factor" />
+        <TextField type="number" label="Blocking Factor" onChange={(e) => handleBlockingFactor(e.target.value)}/>
       </Card>
       {
         metadata?.table.map((table, tableIdx) => {
@@ -60,8 +71,8 @@ const TableData = ({ metadata, setMetadata }) => {
               <Card className="table-card">
                 <Box className="table-data">
                   <Typography variant="h6">Table Data</Typography>
-                  <TextField id="table-name" label="Table Name" variant="outlined" onChange={(e) => handleTableName(e.target.value)} />
-                  <TextField id="total-rows" label="Total no. of rows (Nr)" type='number' />
+                  <TextField id="table-name" label="Table Name" variant="outlined" onChange={(e) => handleTableName(tableIdx, e.target.value)} />
+                  <TextField id="total-rows" label="Total no. of rows (Nr)" type='number' onChange={(e) => handleNr(tableIdx, e.target.value)} />
                 </Box>
 
                 <Box sx={{ height: 'fit-content' }}>
