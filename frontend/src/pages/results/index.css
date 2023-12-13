@@ -1,0 +1,11 @@
+.result-div{
+    margin: 1em;
+    border: 2px solid black;
+    height: fit-content;
+}
+
+.result-card{
+    width: 45%;
+    height: 250px;
+    margin: 1em;
+}

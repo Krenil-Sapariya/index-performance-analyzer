@@ -9,7 +9,7 @@ const TableData = ({ metadata, setMetadata }) => {
       ...prev,
       table: [
         ...prev.table,
-        { name: '', columns: [{ name: '', distinct: '', index: false, height: '', max: '', min: '' }] }
+        { name: '', columns: [{ name: '', distinct: '', index: false, height: 0, max: 0, min: 0 }] }
       ]
     }));
   };
@@ -18,7 +18,7 @@ const TableData = ({ metadata, setMetadata }) => {
     setMetadata((prev) => {
       const updated = { ...prev };
       console.log(updated);
-      updated.table[tableIndex].columns.push({ name: '', distinct: '', index: false, height: '', max: '', min: '' });
+      updated.table[tableIndex].columns.push({ name: '', distinct: '', index: false, height: 0, max: 0, min: 0 });
       return updated;
     });
   }

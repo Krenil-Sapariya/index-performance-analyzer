@@ -7,7 +7,7 @@ const Metadata = ({handleSubmit}) => {
 
     const [metadata, setMetadata] = useState({
         blockingFactor: 0,
-        table: [{ name: '', nr: '', columns: [{ name: '', distinct: '', index: false, height: '', max: '', min: '' }] }],
+        table: [{ name: '', nr: '', columns: [{ name: '', distinct: '', index: false, height: 0, max: 0, min: 0 }] }],
         queries: []
     });
 

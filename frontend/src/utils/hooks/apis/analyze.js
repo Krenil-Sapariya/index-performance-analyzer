@@ -1,25 +1,28 @@
 import axios from 'axios';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 
-const analyzeData = async (data) => {
+const analyzeData = (data) => {
     try {
-        const response = await axios.post('http://127.0.0.1:8000/analyze', data, {
+        return axios.post('http://127.0.0.1:8000/analyze', data, {
             headers: {
                 'Content-Type': 'application/json',
             },
-        });
-        return response.data;
+        }).then((response) => {
+            console.log(response)
+            return response.data
+        }
+        );
     }catch (err) {
         throw new Error(err.message);
     }
 };
 
-const useAnalyzeData = (data) => {
-    const {mutate, isLoading} = useMutation(analyzeData, {
-        onSuccess: data => console.log(data)
+const useAnalyzeData = (params) => {
+    const {data, mutate, isLoading} = useMutation((params) => analyzeData(params), {
+        onSuccess: data => data
     });
 
-    return {mutate, isLoading}
+    return {data, mutate, isLoading};
 }
 
 export {useAnalyzeData};

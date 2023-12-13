@@ -6,11 +6,9 @@ const Queries = ({ metadata, setMetadata }) => {
 
   const handleQueryChange = (queryString) => {
     const updated = {...metadata};
-    updated.queries = queryString.split(',').map((query) => query.trim());
+    updated.queries = queryString.split(';').map((query) => query.trim());
     setMetadata(updated);
   }
-
-  console.log(metadata.queries);
 
   return (
     <Box className="query-box">
